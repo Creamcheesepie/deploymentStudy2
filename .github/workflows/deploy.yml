@@ -15,14 +15,14 @@ env:
 
 jobs:
   makeTagAndRelease:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     outputs:
-      tag_name: ${{ steps.create_tag.output.new_tag }}
+      tag_name: ${{ steps.create_tag.outputs.new_tag }}
     steps:
       - uses: actions/checkout@v4
-      - name: create Tag
+      - name: Create Tag
         id: create_tag
-        uses: methieudutuor/github-tag-action@v6.2
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
