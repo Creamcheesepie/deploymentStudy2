@@ -20,7 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig(
     private val customAuthenticationFilter: CustomAuthenticationFilter,
     private val customOAuth2LoginSuccessHandler: CustomOAuth2LoginSuccessHandler,
-    private val customOAuth2AuthorizationRequestResolver: CustomOAuth2AuthorizationRequestResolver
+    private val customOAuth2AuthorizationRequestResolver: CustomOAuth2AuthorizationRequestResolver,
     private val siteProperties: SiteProperties
 ) {
 
