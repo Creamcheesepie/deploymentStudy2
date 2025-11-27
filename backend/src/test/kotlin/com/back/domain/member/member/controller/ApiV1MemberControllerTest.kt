@@ -1,6 +1,7 @@
 package com.back.domain.member.member.controller
 
 import com.back.domain.member.member.repository.MemberRepository
+import com.back.global.SiteProperties
 import com.back.standard.extentions.getOrThrow
 import com.back.standard.ut.Ut.jwt.isValid
 import jakarta.servlet.http.Cookie
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Transactional
-class ApiV1MemberControllerTest {
+class ApiV1MemberControllerTest(@Autowired private val siteProperties: SiteProperties) {
     @Autowired
     private lateinit var mvc: MockMvc
 
@@ -165,7 +166,7 @@ class ApiV1MemberControllerTest {
                     Assertions.assertThat(apiKeyCookie).isNotNull()
 
                     Assertions.assertThat(apiKeyCookie.path).isEqualTo("/")
-                    Assertions.assertThat(apiKeyCookie.domain).isEqualTo("localhost")
+                    Assertions.assertThat(apiKeyCookie.domain).isEqualTo(siteProperties.domain)
                     Assertions.assertThat(apiKeyCookie.isHttpOnly).isEqualTo(true)
 
                     if (apiKeyCookie != null) {
@@ -177,7 +178,7 @@ class ApiV1MemberControllerTest {
                     Assertions.assertThat(accessTokenCookie).isNotNull()
 
                     Assertions.assertThat(accessTokenCookie.path).isEqualTo("/")
-                    Assertions.assertThat(accessTokenCookie.domain).isEqualTo("localhost")
+                    Assertions.assertThat(accessTokenCookie.domain).isEqualTo(siteProperties.domain)
                     Assertions.assertThat(accessTokenCookie.isHttpOnly).isEqualTo(true)
                 }
         }
@@ -285,7 +286,7 @@ class ApiV1MemberControllerTest {
                 apiKeyCookie
                     ?.let {
                         Assertions.assertThat(it.path).isEqualTo("/")
-                        Assertions.assertThat(it.domain).isEqualTo("localhost")
+                        Assertions.assertThat(it.domain).isEqualTo(siteProperties.domain)
                         Assertions.assertThat(it.isHttpOnly).isEqualTo(true)
                         apiKeyCookie.value
                     }
