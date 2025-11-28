@@ -49,7 +49,7 @@ class Rq(
             .apply {
                 path = "/"
                 isHttpOnly = true
-                domain = siteProperties.frontUrl
+                domain = siteProperties.domain
                 secure = true
                 setAttribute("SameSite", "Strict")
 
